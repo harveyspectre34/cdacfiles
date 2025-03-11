@@ -1,0 +1,135 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+#define MAX_APPOINTMENTS 10
+
+class Appointment {
+private:
+    int id;
+    string patientName;
+    string doctorName;
+    string date;
+    string time;
+
+public:
+    void setAppointment(int id, string pName, string dName, string date, string time) {
+        this->id = id;
+        this->patientName = pName;
+        this->doctorName = dName;
+        this->date = date;
+        this->time = time;
+    }
+
+    int getId() const { return id; }
+    string getPatientName() const { return patientName; }
+    string getDoctorName() const { return doctorName; }
+    string getDate() const { return date; }
+    string getTime() const { return time; }
+
+    void display() const {
+        cout << "ID: " << id
+             << ", Patient: " << patientName
+             << ", Doctor: " << doctorName
+             << ", Date: " << date
+             << ", Time: " << time << "\n";
+    }
+};
+
+class Clinic {
+private:
+    Appointment appointments[MAX_APPOINTMENTS];
+    int count;
+
+public:
+    Clinic() : count(0) {}
+
+    void bookAppointment() {
+        if (count >= MAX_APPOINTMENTS) {
+            cout << "Appointment slots are full!\n";
+            return;
+        }
+
+        string patientName, doctorName, date, time;
+        cout << "Enter Patient Name: ";
+        cin >> patientName;
+        cout << "Enter Doctor Name: ";
+        cin >> doctorName;
+        cout << "Enter Date (YYYY-MM-DD): ";
+        cin >> date;
+        cout << "Enter Time (HH:MM): ";
+        cin >> time;
+
+        appointments[count].setAppointment(count + 1, patientName, doctorName, date, time);
+        count++;
+        cout << "Appointment booked successfully! ID: " << count << "\n";
+    }
+
+    void viewAppointments() {
+        if (count == 0) {
+            cout << "No appointments booked yet.\n";
+            return;
+        }
+
+        cout << "\nList of Appointments:\n";
+        for (int i = 0; i < count; i++) {
+            appointments[i].display();
+        }
+    }
+
+    void cancelAppointment() {
+        if (count == 0) {
+            cout << "No appointments to cancel.\n";
+            return;
+        }
+
+        int id;
+        cout << "Enter Appointment ID to cancel: ";
+        cin >> id;
+
+        int index = -1;
+        for (int i = 0; i < count; i++) {
+            if (appointments[i].getId() == id) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            cout << "Invalid Appointment ID!\n";
+            return;
+        }
+
+        for (int i = index; i < count - 1; i++) {
+            appointments[i] = appointments[i + 1];
+        }
+        count--;
+        cout << "Appointment cancelled successfully.\n";
+    }
+};
+
+int main() {
+    Clinic clinic;
+    int choice;
+
+    do {
+        cout << "\nClinic Appointment System\n";
+        cout << "1. Book Appointment\n";
+        cout << "2. View Appointments\n";
+        cout << "3. Cancel Appointment\n";
+        cout << "4. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: clinic.bookAppointment(); break;
+            case 2: clinic.viewAppointments(); break;
+            case 3: clinic.cancelAppointment(); break;
+            case 4: cout << "Exiting...\n"; break;
+            default: cout << "Invalid choice! Try again.\n";
+        }
+    } while (choice != 4);
+
+    return 0;
+}
