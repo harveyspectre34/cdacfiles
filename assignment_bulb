@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb Toggle</title>
+    <style>
+        #bulb {
+            width: 100px;
+        }
+        .btn {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bulb Toggle -->
+    <h3>Bulb Toggle</h3>
+    <img id="bulb" src="https://www.w3schools.com/js/pic_bulboff.gif" alt="Bulb">
+    <br>
+    <button id="onBtn" class="btn" onclick="bulbOn()">On</button>
+    <button id="offBtn" class="btn" onclick="bulbOff()" style="display:none;">Off</button>
+
+    <script>
+        // Bulb Toggle Logic
+        function bulbOn() {
+            document.getElementById("bulb").src = "https://www.w3schools.com/js/pic_bulbon.gif";
+            document.getElementById("onBtn").style.display = "none";
+            document.getElementById("offBtn").style.display = "inline";
+        }
+
+        function bulbOff() {
+            document.getElementById("bulb").src = "https://www.w3schools.com/js/pic_bulboff.gif";
+            document.getElementById("offBtn").style.display = "none";
+            document.getElementById("onBtn").style.display = "inline";
+        }
+    </script>
+
+</body>
+</html>
