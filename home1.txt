@@ -1,0 +1,72 @@
+8)SELECT EMPNO AS "Employee Code", ENAME AS "Employee Name", JOB AS "Job Title", SAL * 12 AS "Annual Salary" FROM emp WHERE DEPTNO = 10;
+9)SELECT * FROM  emp WHERE  SAL * 12 > 25000 ORDER BY SAL DESC;
+12)SELECT * FROM emp WHERE SAL * 12 > 25000 ORDER BY SAL DESC;
+14)SELECT DISTINCT DEPTNO,DEPTNO AS "Department Numbers" FROM emp ORDER BY DEPTNO DESC;
+17)SELECT ENAME, JOB, DEPTNO FROM emp WHERE DEPTNO = 30 OR DEPTNO = 40;
+18)SELECT EMPNO, ENAME FROM emp WHERE (JOB = 'CLERK' OR JOB = 'MANAGER') AND SAL > 1500;
+19)SELECT ENAME, SAL * 12 AS "Annual Salary", COMM AS "Commission Earned" FROM emp WHERE SAL > COMM ORDER BY "Annual Salary" DESC, ENAME ASC;
+20)SELECT ENAME, JOB FROM emp WHERE (JOB = 'SALESMAN' OR JOB = 'MANAGER') AND ENAME LIKE '%S';
+21)SELECT ENAME FROM emp WHERE SAL > 1000 AND SAL <= 2200;
+22)SELECT ENAME, SAL FROM emp   where job='clerk'
+23)SELECT DEPTNO, ENAME FROM emp where sal <2500;
+24)SELECT EMPNO, ENAME FROM emp WHERE JOB = 'PRESIDENT';
+25)SELECT ENAME FROM emp WHERE JOB IN ('CLERK', 'ANALYST', 'SALESMAN');
+27)SELECT *
+FROM emp
+ORDER BY ENAME ASC;
+28)SELECT *
+FROM emp
+WHERE COMM > (SAL * 0.05);
+31)SELECT ENAME, SAL, COMM
+FROM emp
+WHERE COMM IS NOT NULL
+ORDER BY SAL DESC, COMM DESC;
+33)SELECT ENAME
+FROM emp
+WHERE ENAME LIKE '%LS%LS%' AND (DEPTNO = 30 OR MGR = 7782);
+34)SELECT ENAME, JOB, SAL FROM emp WHERE JOB IN ('CLERK', 'ANALYST') AND SAL NOT IN (1000, 3000, 5000);
+36)SELECT EMPNO, ENAME, (SAL * 12 + COALESCE(COMM, 0)) AS "Gross Salary" FROM emp WHERE DEPTNO IN (20, 30) ORDER BY EMPNO ASC;
+37)SELECT EMPNO, ENAME, SAL, CAST(SAL * 1.15 AS INTEGER) AS "New Salary" FROM emp;
+39)SELECT ENAME,CASH WHEN COMM IS NULL THEN 'No Commission' ELSE CAST(COMM AS VARCHAR) END AS "Commission Amount" FROM emp;
+40)SELECT CustomerName, SalesAmount, CAST(SalesAmount * 0.08 AS INTEGER) AS "Approximate Profit Earned" FROM emp;
+42)SELECT
+    CustomerName,
+    RepID,          
+    CreditLimit,    
+    '$' || CAST(CAST(CreditLimit * 1.25 AS INTEGER) AS VARCHAR) AS "New Credit Limit"
+FROM
+    CustomerTable;    
+b)SELECT
+    CustomerName,
+    RepID,
+    CreditLimit,
+    LPAD('$' || CAST(CAST(CreditLimit * 1.25 AS INTEGER) AS VARCHAR), 10, ' ') AS "New Credit Limit"
+FROM
+    CustomerTable;
+43)SELECT
+    ENAME,
+    CASE DEPTNO
+       a) WHEN 10 THEN 'Belongs to Dept. 10'
+       b) WHEN 20 THEN 'Belongs to the Dept. 20'
+       c) ELSE 'Neither 10 nor 20'
+    END AS "Department Information"
+FROM emp;
+46) SELECT *
+FROM emp
+WHERE City = 'BOSTON';       
+49)SELECT ENAME
+FROM emp
+ORDER BY ENAME ASC;
+50)SELECT *
+FROM emp
+ORDER BY SAL DESC;
+ 51.) Display employee information in ascending order of year.
+SELECT *
+FROM your_employee_table 
+ORDER BY strftime('%Y', HIREDATE) ASC; 
+
+52). Display job, deptno, names of employee whose name starts with ‘B’ or ‘M’.
+SELECT JOB, DEPTNO, ENAME
+FROM your_employee_table 
+WHERE ENAME LIKE 'B%' OR ENAME LIKE 'M%';
+53)SELECT * FROM emp WHERE COMM IS NULL AND SAL <= 3000;
